@@ -49,7 +49,7 @@ const HoaxSubmit = () => {
     }
   };
 
-  const onChangeFile = event => {
+    const onChangeFile = event => {
     if (event.target.files.length < 1) {
       return;
     }

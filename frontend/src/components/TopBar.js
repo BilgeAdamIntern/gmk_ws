@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutSuccess } from '../redux/authActions';
 import ProfileImageWithDefault from './ProfileImageWithDefault';
+import LanguageSelector from "./LanguageSelector";
 
 const TopBar = props => {
   const { t } = useTranslation();
@@ -41,6 +42,7 @@ const TopBar = props => {
 
   let links = (
     <ul className="navbar-nav ml-auto">
+      <LanguageSelector />
       <li>
         <Link className="nav-link" to="/login">
           {t('Login')}
@@ -48,8 +50,9 @@ const TopBar = props => {
       </li>
       <li>
         <Link className="nav-link" to="/signup">
-          {t('Sign Up')}
+          {t('Sign_Up')}
         </Link>
+
       </li>
     </ul>
   );
@@ -61,6 +64,7 @@ const TopBar = props => {
 
     links = (
       <ul className="navbar-nav ml-auto" ref={menuArea}>
+        <LanguageSelector />
         <li className="nav-item dropdown">
           <div className="d-flex" style={{ cursor: 'pointer' }} onClick={() => setMenuVisible(true)}>
             <ProfileImageWithDefault image={image} width="32" height="32" className="rounded-circle m-auto" />
@@ -90,6 +94,7 @@ const TopBar = props => {
         </Link>
         {links}
       </nav>
+
     </div>
   );
 };
