@@ -67,7 +67,7 @@ const ProfileCard = props => {
       image = newImage.split(',')[1];
     }
 
-    /*const body = {
+    const body = {
       displayName: updatedDisplayName,
       image
     };
@@ -78,7 +78,7 @@ const ProfileCard = props => {
       dispatch(updateSuccess(response.data));
     } catch (error) {
       setValidationErrors(error.response.data.validationErrors);
-    }*/
+    }
   };
 
   const onChangeFile = event => {
@@ -123,7 +123,7 @@ const ProfileCard = props => {
         {!inEditMode && (
           <>
             <h3>
-              {displayName}
+              {displayName}@{username}
             </h3>
             {editable && (
               <>
