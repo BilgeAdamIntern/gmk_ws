@@ -19,8 +19,6 @@ class TableRows extends Component {
                 </tr>
                 {!!this.props.list && !!this.props.list.length && this.props.list.map(each => {
                     return (
-
-
                         <tr>
                             <th>{each.firstName}</th>
                             <th>{each.secondName}</th>
@@ -30,8 +28,6 @@ class TableRows extends Component {
                             <th>{each.duty}</th>
                             <th>{each.age}</th>
                         </tr>
-
-
                     );
                 })}
                 </thead>
