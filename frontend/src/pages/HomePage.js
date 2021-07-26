@@ -9,7 +9,8 @@ import {getUser} from "../api/apiCalls";
 //React JS
 class HomePage extends Component {
 
-    constructor(props) {
+    constructor(props)
+    {
         super(props);
         this.state = {
             employees: [],
@@ -21,12 +22,14 @@ class HomePage extends Component {
     }
 
     fetchEmployees = async () => {
-        try {
+        try
+        {
             const response = await getEmployees(0, 10);
             console.log(response.data);
             this.setState({employees: response.data.content})
             console.log(response.data.content);
-        } catch (error) {
+        }
+        catch (error) {
             console.log("HAYIIR");
         }
     };
