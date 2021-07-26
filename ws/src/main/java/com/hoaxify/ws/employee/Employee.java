@@ -45,7 +45,7 @@ public class Employee implements Serializable {
     private String age;
 
     @Column(name="tcno", nullable = false, unique = true)
-    private String ID;
+    private String tcno;
 
     public long getEmpID() {
         return empID;
@@ -105,12 +105,12 @@ public class Employee implements Serializable {
         this.age = age;
     }
 
-    public String getID() {
-        return ID;
+    public String getTcno() {
+        return tcno;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setTcno(String tcno) {
+        this.tcno = tcno;
     }
 
 }

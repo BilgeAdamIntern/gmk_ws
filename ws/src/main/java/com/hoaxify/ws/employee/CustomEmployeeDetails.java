@@ -28,7 +28,7 @@ public class CustomEmployeeDetails implements EmployeeDetails {
         this.department = employee.getDepartment();
         this.duty = employee.getDuty();
         this.age = employee.getAge();
-        this.id = employee.getID();
+        this.id = employee.getTcno();
         this.phoneNumeber = employee.getPhoneNumber();
     }
 

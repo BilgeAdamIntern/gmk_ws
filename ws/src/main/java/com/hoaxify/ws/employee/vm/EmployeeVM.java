@@ -12,7 +12,8 @@ public class EmployeeVM {
     private String phoneNumber;
     private String department;
     private String duty;
-    private String id;
+    private String tcno;
+    private String age;
 
     public EmployeeVM (Employee employee) {
         this.setFirstName(employee.getFirstName());
@@ -20,7 +21,8 @@ public class EmployeeVM {
         this.setPhoneNumber(employee.getPhoneNumber());
         this.setDepartment(employee.getDepartment());
         this.setDuty(employee.getDuty());
-        this.setId(employee.getID());
+        this.setTcno(employee.getTcno());
+        this.setAge(employee.getAge());
     }
 
 }
