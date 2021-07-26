@@ -10,10 +10,21 @@ import java.io.Serializable;
 public class Employee implements Serializable {
 
     @Id
-    @OneToOne
-    @JoinColumn(name = "emp_id")
+    @Column(name = "emp_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private User empID;
+    private long empID;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User userID;
+
+    public User getUserID() {
+        return userID;
+    }
+
+    public void setUserID(User userID) {
+        this.userID = userID;
+    }
 
     @Column(name = "first_name", nullable = false)
     private String firstName;
@@ -36,11 +47,11 @@ public class Employee implements Serializable {
     @Column(name="tcno", nullable = false, unique = true)
     private String ID;
 
-    public User getEmpID() {
+    public long getEmpID() {
         return empID;
     }
 
-    public void setEmpID(User empID) {
+    public void setEmpID(long empID) {
         this.empID = empID;
     }
 
@@ -52,13 +63,7 @@ public class Employee implements Serializable {
         this.firstName = firstName;
     }
 
-    public String getSurname() {
-        return secondName;
-    }
 
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
-    }
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -74,6 +79,14 @@ public class Employee implements Serializable {
 
     public void setDepartment(String department) {
         this.department = department;
+    }
+
+    public String getSecondName() {
+        return secondName;
+    }
+
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
     }
 
     public String getDuty() {

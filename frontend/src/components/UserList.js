@@ -1,79 +1,43 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, Component} from 'react';
+import {getEmployees} from "../api/apiCalls2";
 import { getUsers } from '../api/apiCalls';
 import { useTranslation } from 'react-i18next';
 import UserListItem from './UserListItem';
 import { useApiProgress } from '../shared/ApiProgress';
 import Spinner from './Spinner';
+import TableRows from "./TableRows";
 
-const UserList = () => {
-  const [page, setPage] = useState({
-    content: [],
-    size: 3,
-    number: 0
-  });
+class UserList extends Component {
 
-  const [loadFailure, setLoadFailure] = useState(false);
-
-  const pendingApiCall = useApiProgress('get', '/api/users?page');
-
-  useEffect(() => {
-    loadUsers();
-  }, []);
-
-  const onClickNext = () => {
-    const nextPage = page.number + 1;
-    loadUsers(nextPage);
-  };
-
-  const onClickPrevious = () => {
-    const previousPage = page.number - 1;
-    loadUsers(previousPage);
-  };
-
-  const loadUsers = async page => {
-    setLoadFailure(false);
-    try {
-      const response = await getUsers(page);
-      setPage(response.data);
-    } catch (error) {
-      setLoadFailure(true);
-    }
-  };
-
-  const { t } = useTranslation();
-  const { content: users, last, first } = page;
-
-  let actionDiv = (
-    <div>
-      {first === false && (
-        <button className="btn btn-sm btn-light" onClick={onClickPrevious}>
-          {t('Previous')}
-        </button>
-      )}
-      {last === false && (
-        <button className="btn btn-sm btn-light float-right" onClick={onClickNext}>
-          {t('Next')}
-        </button>
-      )}
-    </div>
-  );
-
-  if (pendingApiCall) {
-    actionDiv = <Spinner />;
+  constructor(props) {
+    super(props);
+    this.state = {}
   }
 
-  return (
-    <div className="card">
-      <h3 className="card-header text-center">{t('Users')}</h3>
-      <div className="list-group-flush">
-        {users.map(user => (
-          <UserListItem key={user.username} user={user} />
-        ))}
-      </div>
-      {actionDiv}
-      {loadFailure && <div className="text-center text-danger">{t('Load Failure')}</div>}
-    </div>
-  );
-};
+  render() {
+
+    return (
+        <div className="card">
+          <h3 className="card-header text-center">{'Users'}</h3>
+          <div className="list-group-flush">
+            <table border={1} width={1110}>
+              <thead>
+              <tr>
+                <th>Ad</th>
+                <th>Soyad</th>
+                <th>TelefonNo</th>
+                <th>TCKNO</th>
+                <th>Departman</th>
+                <th>Görev</th>
+                <th>Yaş</th>
+              </tr>
+              </thead>
+              <TableRows list={this.props.list}/>
+            </table>
+          </div>
+        </div>
+    );
+  }
+}
 
 export default UserList;

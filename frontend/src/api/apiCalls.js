@@ -33,6 +33,10 @@ export const getUser = username => {
   return axios.get(`/api/users/${username}`);
 };
 
+export const getImage = image => {
+  return axios.get(`/api/users/${image}`);
+};
+
 export const updateUser = (username, body) => {
   return axios.put(`/api/users/${username}`, body);
 };
