@@ -20,9 +20,9 @@ class UserList extends Component {
         <div className="card">
           <h3 className="card-header text-center">{'Users'}</h3>
           <div className="list-group-flush">
-            <table border={1}>
+            <table border={1}  className="list-group">
               <TableRows list={this.props.list}/>
-              </table>
+            </table>
           </div>
         </div>
     );
