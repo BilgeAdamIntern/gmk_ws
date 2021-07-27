@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import Input from '../components/Input';
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 import ButtonWithProgress from '../components/ButtonWithProgress';
-import { useApiProgress } from '../shared/ApiProgress';
-import { useDispatch } from 'react-redux';
-import { loginHandler } from '../redux/authActions';
+import {useDispatch} from 'react-redux';
+import {loginHandler} from '../redux/authActions';
 
 const LoginPage = props => {
   const [username, setUsername] = useState();
@@ -38,7 +37,7 @@ const LoginPage = props => {
 
   const { t } = useTranslation();
 
-  const pendingApiCall = useApiProgress('post', '/api/auth');
+
 
   const buttonEnabled = username && password;
 
@@ -50,7 +49,7 @@ const LoginPage = props => {
         <Input label={t('Password')} type="password" onChange={event => setPassword(event.target.value)} />
         {error && <div className="alert alert-danger">{error}</div>}
         <div className="text-center">
-          <ButtonWithProgress onClick={onClickLogin} disabled={!buttonEnabled || pendingApiCall} pendingApiCall={pendingApiCall} text={t('Login')} />
+          <ButtonWithProgress onClick={onClickLogin} disabled={!buttonEnabled }  text={t('Login')} />
         </div>
       </form>
     </div>

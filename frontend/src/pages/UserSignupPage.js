@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Input from '../components/Input';
-import { useTranslation } from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 import ButtonWithProgress from '../components/ButtonWithProgress';
-import { useApiProgress } from '../shared/ApiProgress';
-import { useDispatch } from 'react-redux';
-import { signupHandler } from '../redux/authActions';
+import {useDispatch} from 'react-redux';
+import {signupHandler} from '../redux/authActions';
 
 const UserSignupPage = (props) => {
   const [form, setForm] = useState({
@@ -51,10 +50,6 @@ const UserSignupPage = (props) => {
   const { t } = useTranslation();
 
   const { username: usernameError, displayName: displayNameError, password: passwordError } = errors;
-  const pendingApiCallSignup = useApiProgress('post', '/api/1.0/users');
-  const pendingApiCallLogin = useApiProgress('post', '/api/1.0/auth');
-
-  const pendingApiCall = pendingApiCallSignup || pendingApiCallLogin;
 
   let passwordRepeatError;
   if (form.password !== form.passwordRepeat) {
@@ -72,8 +67,7 @@ const UserSignupPage = (props) => {
         <div className="text-center">
           <ButtonWithProgress
             onClick={onClickSignup}
-            disabled={pendingApiCall || passwordRepeatError !== undefined}
-            pendingApiCall={pendingApiCall}
+            disabled={passwordRepeatError !== undefined}
             text={t('Sign Up')}
           />
         </div>

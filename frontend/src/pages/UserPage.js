@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import ProfileCard from '../components/ProfileCard';
-import { getUser } from '../api/apiCalls';
-import { useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { useApiProgress } from '../shared/ApiProgress';
+import {getUser} from '../api/apiCalls';
+import {useParams} from 'react-router-dom';
+import {useTranslation} from 'react-i18next';
 import Spinner from '../components/Spinner';
-import HoaxFeed from '../components/HoaxFeed';
 
 const UserPage = () => {
   const [user, setUser] = useState({});
@@ -15,7 +13,6 @@ const UserPage = () => {
 
   const { t } = useTranslation();
 
-  const pendingApiCall = useApiProgress('get', '/api/users/' + username, true);
 
   useEffect(() => {
     setNotFound(false);
@@ -48,7 +45,7 @@ const UserPage = () => {
     );
   }
 
-  if (pendingApiCall || user.username !== username) {
+  if (user.username !== username) {
     return <Spinner />;
   }
 
@@ -59,7 +56,6 @@ const UserPage = () => {
           <ProfileCard user={user} />
         </div>
         <div className="col">
-          <HoaxFeed />
         </div>
       </div>
     </div>

@@ -5,7 +5,6 @@ import ProfileImageWithDefault from './ProfileImageWithDefault';
 import { useTranslation } from 'react-i18next';
 import Input from './Input';
 import { updateUser, deleteUser } from '../api/apiCalls';
-import { useApiProgress } from '../shared/ApiProgress';
 import ButtonWithProgress from './ButtonWithProgress';
 import { updateSuccess, logoutSuccess } from '../redux/authActions';
 import Modal from './Modal';
@@ -47,8 +46,6 @@ const ProfileCard = props => {
   }, [newImage]);
 
   const { username, displayName, image } = user;
-
-  const pendingApiCallDeleteUser = useApiProgress('delete', `/api/users/${username}`, true);
 
   const { t } = useTranslation();
 
@@ -103,8 +100,6 @@ const ProfileCard = props => {
     dispatch(logoutSuccess());
     history.push('/');
   };
-  const pendingApiCall = useApiProgress('put', '/api/users/' + username);
-
   const { displayName: displayNameError, image: imageError } = validationErrors;
 
   return (
@@ -156,8 +151,6 @@ const ProfileCard = props => {
               <ButtonWithProgress
                 className="btn btn-primary d-inline-flex"
                 onClick={onClickSave}
-                disabled={pendingApiCall}
-                pendingApiCall={pendingApiCall}
                 text={
                   <>
                     <i className="material-icons">save</i>
@@ -165,7 +158,7 @@ const ProfileCard = props => {
                   </>
                 }
               />
-              <button className="btn btn-light d-inline-flex ml-1" onClick={() => setInEditMode(false)} disabled={pendingApiCall}>
+              <button className="btn btn-light d-inline-flex ml-1" onClick={() => setInEditMode(false)}>
                 <i className="material-icons">close</i>
                 {t('Cancel')}
               </button>
@@ -180,7 +173,6 @@ const ProfileCard = props => {
         onClickCancel={onClickCancel}
         onClickOk={onClickDeleteUser}
         message={t('Are you sure to delete your account?')}
-        pendingApiCall={pendingApiCallDeleteUser}
       />
     </div>
   );
