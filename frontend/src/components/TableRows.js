@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import  '../ForRows.css';
+import '../ForRows.css';
 
 class TableRows extends Component {
 

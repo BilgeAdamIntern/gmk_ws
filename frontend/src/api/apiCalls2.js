@@ -5,7 +5,15 @@ export const getEmployees = (page = 0, size = 3) => {
 };
 
 export const getFirstName = firstName =>{
-    return axios.get(`/api/employee/{firstName}`);
+    return axios.get(`/api/employee/${firstName}`);
+};
+
+export const updateEmployee = (firstName, body) => {
+    return axios.put(`/api/employees/${firstName}`,body);
+};
+
+export const deleteEmployee = firstName => {
+    return axios.delete(`/api/employees/${firstName}`);
 };
 
 export const getSecondName = secondName =>{

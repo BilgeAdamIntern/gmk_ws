@@ -118,7 +118,7 @@ const ProfileCard = props => {
         {!inEditMode && (
           <>
             <h3>
-              {displayName}@{username}
+              {username}
             </h3>
             {editable && (
               <>

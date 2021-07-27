@@ -1,17 +1,40 @@
-import React, {useState, useEffect, Component} from 'react';
+import React, {Component, useEffect} from 'react';
 import {getEmployees} from "../api/apiCalls2";
-import { getUsers } from '../api/apiCalls';
-import { useTranslation } from 'react-i18next';
-import UserListItem from './UserListItem';
-import { useApiProgress } from '../shared/ApiProgress';
-import Spinner from './Spinner';
 import TableRows from "./TableRows";
 
 class UserList extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+        content: [],
+        size : 3,
+        page: 0,
+        number: 0
+    }
+
+  }
+
+  onClickNext = number => {
+      const nextPage = this.setState({number: number+1});
+      this.loadEmployees(nextPage);
+  };
+
+  onClickPrevious = number => {
+      const previousPage = this.setState({number: number -1});
+      this.loadEmployees(previousPage);
+  };
+
+
+  loadEmployees = async () =>{
+
+      try {
+          const response =await getEmployees(0,10);
+          console.log(response.data.content);
+          this.setState({page: response.data.content});
+      }catch(error) {
+          console.log(error)
+      }
   }
 
   render() {
