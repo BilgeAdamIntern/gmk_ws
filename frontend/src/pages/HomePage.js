@@ -1,6 +1,10 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect} from 'react';
 import UserList from '../components/UserList';
+import HoaxSubmit from '../components/HoaxSubmit';
+import {useSelector} from 'react-redux';
+import HoaxFeed from '../components/HoaxFeed';
 import {getEmployees} from "../api/apiCalls2";
+import {getUser} from "../api/apiCalls";
 
 //React JS
 class HomePage extends Component {
