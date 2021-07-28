@@ -8,19 +8,18 @@ class UserList extends Component {
     super(props);
     this.state = {
         content: [],
-        size : 3,
+        size : 2,
         page: 0,
         number: 0
     }
 
   }
 
-  onClickNext = number => {
-      const nextPage = this.setState({number: number+1});
-      this.loadEmployees(nextPage);
-  };
+    onClickNext = number => {
+        this.setState({number:number + 1});
+    };
 
-  onClickPrevious = number => {
+    onClickPrevious = number => {
       const previousPage = this.setState({number: number -1});
       this.loadEmployees(previousPage);
   };
@@ -29,7 +28,7 @@ class UserList extends Component {
   loadEmployees = async () =>{
 
       try {
-          const response =await getEmployees(0,10);
+          const response =await getEmployees(0,2);
           console.log(response.data.content);
           this.setState({page: response.data.content});
       }catch(error) {
