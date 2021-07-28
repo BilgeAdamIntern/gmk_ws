@@ -31,6 +31,9 @@ class TableRows extends Component {
                     );
                 })}
                 </thead>
+                <button className="btn btn-sm btn-light" onClick={()=>this.props.prevpage()}>previous page</button>
+                <label>{this.props.pagenumber}</label>
+                <button className="btn btn-sm btn-light" onClick={()=>this.props.nextpage()}>next page</button>
             </div>
         );
     }
