@@ -33,6 +33,7 @@ class HomePage extends Component {
 
     onClickNext = page => {
         this.setState({page: page + 1});
+        this.fetchEmployees();
 
     };
 
