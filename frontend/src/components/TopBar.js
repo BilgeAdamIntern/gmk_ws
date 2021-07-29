@@ -90,7 +90,7 @@ const TopBar = props => {
       <nav className="navbar navbar-light container navbar-expand">
         <Link className="navbar-brand" to="/">
           <img src={logo} width="60" alt="Hoaxify Logo" />
-          Hoaxify
+          BilgeAdam
         </Link>
         {links}
       </nav>
