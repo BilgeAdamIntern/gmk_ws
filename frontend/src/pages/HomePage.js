@@ -10,41 +10,43 @@ class HomePage extends Component {
         this.state = {
             employees: [],
             content: [],
-            size: 2,
+            size: 0,
             page: 0,
-            number: 0
         }
     }
 
     componentDidMount() {
         this.fetchEmployees();
-
     }
 
-    fetchEmployees = async () => {
+    fetchEmployees = async (page, size) => {
         try {
-            const response = await getEmployees(this.state.page, 1);
+            const response = await getEmployees(page, size);
+            this.setState({size: size});
             console.log(response.data);
             this.setState({employees: response.data.content})
             console.log(response.data.content);
-            console.log(this.state.page);
+            console.log(page);
+            console.log("default siz" +this.state.size);
         } catch (error) {
             console.log("HAYIIR");
         }
     };
     onClickNext = ()=> {
-        debugger;
         let nextPage = this.state.page+1;
         this.setState({page: nextPage});
-        /*console.log(nextPage)*/
-        this.fetchEmployees(this.state.page)
+        this.fetchEmployees(nextPage, this.state.size);
     };
     onClickPrev = ()=> {
-        debugger;
         let prevPage = this.state.page-1;
         this.setState({page: prevPage});
-       /* console.log(prevPage)*/
-        this.fetchEmployees(prevPage)
+        this.fetchEmployees(prevPage, this.state.size);
+    };
+    updateSize = async (newsize) => {
+        this.forceUpdate();
+        await this.setState({size: newsize});
+        await this.fetchEmployees(this.state.page, newsize);
+        console.log("updated size" +newsize);
     };
     render()
     {
@@ -55,6 +57,8 @@ class HomePage extends Component {
                         <UserList
                             list={this.state.employees}
                             pagenumber={this.state.page}
+                            sizenumber={this.state.size}
+                            updatesize={(e) => this.updateSize(e)}
                             nextpage={() => this.onClickNext()}
                             prevpage={() => this.onClickPrev()}
                         />

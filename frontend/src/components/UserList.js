@@ -10,29 +10,11 @@ class UserList extends Component {
         content: []
     }
   }
+  componentDidMount() {
+      this.render();
+  }
 
-    /*onClickNext = () => {
-        const nextPage = this.setState({number: this.props.list.page+ 1});
-        this.loadEmployees(nextPage);
-    };
-
-    onClickPrevious = () => {
-      const previousPage = this.setState({number: this.props.list.page -1});
-      this.loadEmployees(previousPage);
-  };*/
-
-
-  /*loadEmployees = async () =>{
-      try {
-          const response =await getEmployees(this.props.list.page,2);
-          console.log(response.data.content);
-          this.setState({page: response.data.content});
-      }catch(error) {
-          console.log(error)
-      }
-  }*/
-
-  render() {
+    render() {
     return (
         <div className="card">
           <h3 className="card-header text-center">{'Users'}</h3>
@@ -41,6 +23,8 @@ class UserList extends Component {
               <TableRows
                   list={this.props.list}
                   pagenumber={this.props.pagenumber}
+                  sizenumber={this.props.sizenumber}
+                  updatesize={(e)=>this.props.updatesize(e)}
                   nextpage={()=>this.props.nextpage()}
                   prevpage={()=>this.props.prevpage()}/>
             </table>

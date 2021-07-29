@@ -2,7 +2,9 @@ import React, {Component} from "react";
 import '../ForRows.css';
 
 class TableRows extends Component {
-
+    componentDidMount() {
+        this.sizeOnChange();
+    }
 
     render() {
         return (
@@ -32,10 +34,27 @@ class TableRows extends Component {
                 })}
                 </thead>
                 <button className="btn btn-sm btn-light" onClick={()=>this.props.prevpage()}>previous page</button>
-                <label>{this.props.pagenumber}</label>
+                <label>{this.props.pagenumber+1}</label>
                 <button className="btn btn-sm btn-light" onClick={()=>this.props.nextpage()}>next page</button>
+                <select  className="float-right" id="kk" onChange={()=>this.sizeOnChange()}>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+                <label htmlFor="dataNumber" className="float-right">Sayı Seçiniz:</label>
             </div>
         );
+    }
+    sizeOnChange(){
+        let e = document.getElementById("kk");
+        let newSize = e.options[e.selectedIndex].value;
+        console.log("table size " + newSize);
+        this.props.updatesize(newSize);
     }
 }
 

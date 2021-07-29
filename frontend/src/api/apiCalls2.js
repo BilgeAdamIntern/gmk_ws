@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export const getEmployees = (page = 0, size = 1) => {
-    debugger;
     return axios.get(`/api/employee?page=${page}&size=${size}`);
 };
 
