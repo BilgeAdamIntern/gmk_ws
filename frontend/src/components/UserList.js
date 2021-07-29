@@ -26,7 +26,10 @@ class UserList extends Component {
                   sizenumber={this.props.sizenumber}
                   updatesize={(e)=>this.props.updatesize(e)}
                   nextpage={()=>this.props.nextpage()}
-                  prevpage={()=>this.props.prevpage()}/>
+                  prevpage={()=>this.props.prevpage()}
+                  last={this.props.last}
+                  first={this.props.first}
+              />
             </table>
           </div>
         </div>

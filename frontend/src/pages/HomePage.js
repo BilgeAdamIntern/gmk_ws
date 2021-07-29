@@ -12,6 +12,8 @@ class HomePage extends Component {
             content: [],
             size: 0,
             page: 0,
+            last:false,
+            first:true,
         }
     }
 
@@ -23,11 +25,12 @@ class HomePage extends Component {
         try {
             const response = await getEmployees(page, size);
             this.setState({size: size});
+            this.setState({last:response.data.last})
+            this.setState({first:response.data.first})
+            console.log("last = "+this.state.last)
             console.log(response.data);
             this.setState({employees: response.data.content})
             console.log(response.data.content);
-            console.log(page);
-            console.log("default siz" +this.state.size);
         } catch (error) {
             console.log("HAYIIR");
         }
@@ -42,10 +45,10 @@ class HomePage extends Component {
         this.setState({page: prevPage});
         this.fetchEmployees(prevPage, this.state.size);
     };
-    updateSize = async (newsize) => {
+    updateSize = (newsize) => {
         this.forceUpdate();
-        await this.setState({size: newsize});
-        await this.fetchEmployees(this.state.page, newsize);
+        this.setState({size: newsize});
+        this.fetchEmployees(this.state.page, newsize);
         console.log("updated size" +newsize);
     };
     render()
@@ -61,6 +64,8 @@ class HomePage extends Component {
                             updatesize={(e) => this.updateSize(e)}
                             nextpage={() => this.onClickNext()}
                             prevpage={() => this.onClickPrev()}
+                            last={this.state.last}
+                            first={this.state.first}
                         />
                     </div>
                 </div>

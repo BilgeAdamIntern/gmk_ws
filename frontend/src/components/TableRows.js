@@ -33,9 +33,9 @@ class TableRows extends Component {
                     );
                 })}
                 </thead>
-                <button className="btn btn-sm btn-light" onClick={()=>this.props.prevpage()}>previous page</button>
-                <label>{this.props.pagenumber+1}</label>
-                <button className="btn btn-sm btn-light" onClick={()=>this.props.nextpage()}>next page</button>
+                {this.props.first === false && (<button className="btn btn-sm btn-light" onClick={()=>this.props.prevpage()}>previous page</button>)}
+                <label>    {this.props.pagenumber+1}   </label>
+                {this.props.last === false && (<button className="btn btn-sm btn-light" onClick={()=>this.props.nextpage()}>next page</button>)}
                 <select  className="float-right" id="kk" onChange={()=>this.sizeOnChange()}>
                     <option value="1">1</option>
                     <option value="2">2</option>
