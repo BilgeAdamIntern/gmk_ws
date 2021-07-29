@@ -12,8 +12,8 @@ class HomePage extends Component {
             content: [],
             size: 0,
             page: 0,
-            last:false,
-            first:true,
+            last: false,
+            first: true,
         }
     }
 
@@ -25,9 +25,9 @@ class HomePage extends Component {
         try {
             const response = await getEmployees(page, size);
             this.setState({size: size});
-            this.setState({last:response.data.last})
-            this.setState({first:response.data.first})
-            console.log("last = "+this.state.last)
+            this.setState({last: response.data.last})
+            this.setState({first: response.data.first})
+            console.log("last = " + this.state.last)
             console.log(response.data);
             this.setState({employees: response.data.content})
             console.log(response.data.content);
@@ -35,13 +35,13 @@ class HomePage extends Component {
             console.log("HAYIIR");
         }
     };
-    onClickNext = ()=> {
-        let nextPage = this.state.page+1;
+    onClickNext = () => {
+        let nextPage = this.state.page + 1;
         this.setState({page: nextPage});
         this.fetchEmployees(nextPage, this.state.size);
     };
-    onClickPrev = ()=> {
-        let prevPage = this.state.page-1;
+    onClickPrev = () => {
+        let prevPage = this.state.page - 1;
         this.setState({page: prevPage});
         this.fetchEmployees(prevPage, this.state.size);
     };
@@ -49,10 +49,10 @@ class HomePage extends Component {
         this.forceUpdate();
         this.setState({size: newsize});
         this.fetchEmployees(this.state.page, newsize);
-        console.log("updated size" +newsize);
+        console.log("updated size" + newsize);
     };
-    render()
-    {
+
+    render() {
         return (
             <div className="container">
                 <div className="row">
@@ -73,6 +73,7 @@ class HomePage extends Component {
         );
     }
 }
-    export default HomePage;
+
+export default HomePage;
 
 

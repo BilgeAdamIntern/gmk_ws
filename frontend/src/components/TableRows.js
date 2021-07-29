@@ -29,14 +29,18 @@ class TableRows extends Component {
                             <th className="long-rows">{each.department}</th>
                             <th className="long-rows">{each.duty}</th>
                             <th className="short-rows">{each.age}</th>
+                            <button className="btn btn-sm btn-light">+</button>
                         </tr>
                     );
                 })}
                 </thead>
-                {this.props.first === false && (<button className="btn btn-sm btn-light" onClick={()=>this.props.prevpage()}>previous page</button>)}
-                <label>    {this.props.pagenumber+1}   </label>
-                {this.props.last === false && (<button className="btn btn-sm btn-light" onClick={()=>this.props.nextpage()}>next page</button>)}
-                <select  className="float-right" id="kk" onChange={()=>this.sizeOnChange()}>
+                {this.props.first === false && (
+                    <button className="btn btn-sm btn-light" onClick={() => this.props.prevpage()}>previous
+                        page</button>)}
+                <label>    {this.props.pagenumber + 1}   </label>
+                {this.props.last === false && (
+                    <button className="btn btn-sm btn-light" onClick={() => this.props.nextpage()}>next page</button>)}
+                <select className="float-right" id="kk" onChange={() => this.sizeOnChange()}>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -50,7 +54,8 @@ class TableRows extends Component {
             </div>
         );
     }
-    sizeOnChange(){
+
+    sizeOnChange() {
         let e = document.getElementById("kk");
         let newSize = e.options[e.selectedIndex].value;
         console.log("table size " + newSize);
