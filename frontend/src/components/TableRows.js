@@ -1,19 +1,29 @@
-import React, {Component, useState} from "react";
+import React, {Component} from "react";
 import '../ForRows.css';
-import Popupp from './Popup.js';
-import Popup from 'reactjs-popup';
-
+import Modal from 'react-modal';
+import Popupp from "./Popup";
+import Popup from "reactjs-popup";
 
 class TableRows extends Component {
-constructor(props) {
-    super(props);
-    this.state ={
-        buttonPopup:false,
-        setButtonPopup:false,
+
+    constructor(props) {
+        super(props);
+        this.state = {}
     }
-}
 
     render() {
+
+        const customStyles = {
+            content: {
+                top: '50%',
+                left: '50%',
+                right: 'auto',
+                bottom: 'auto',
+                marginRight: '-50%',
+                transform: 'translate(-50%, -50%)',
+            },
+        };
+
         return (
             <div>
                 <thead>
@@ -36,7 +46,9 @@ constructor(props) {
                             <th className="long-rows">{each.department}</th>
                             <th className="long-rows">{each.duty}</th>
                             <th className="short-rows">{each.age}</th>
-                            <th>{this.popupRender()}</th>
+                            <button className="btn btn-sm btn-light"
+                                    onClick={() => this.setState({showModal: true})}>+
+                            </button>
                         </tr>
                     );
                 })}
@@ -61,26 +73,21 @@ constructor(props) {
                     <option value="100">100</option>
                 </select>
                 <label htmlFor="dataNumber" className="float-right">Görülecek kişi sayısı seçiniz : </label>
-                {/*<Popupp list={this.props.list}/>*/}
+
+                {this.state.showModal &&
+                <Modal
+                    isOpen={this.state.showModal}
+                    onRequestClose={() => this.setState({showModal: false})}
+                    style={customStyles}
+                    contentLabel="Example Modal">
+                    <Popupp list={this.props.list}/>
+                    <button className="btn btn-sm btn-light" onClick={() => this.setState({showModal: false})}>close
+                    </button>
+                </Modal>}
             </div>
         );
     }
-    popupButton(){
-      this.setState({setButtonPopup : true})
-    }
-    popupRender() {
-            return(
-                <div>
-                    <main>
-                        <button className={"btn btn-sm btn-light"} onClick={()=> this.popupButton()}>
-                            +
-                        </button>
-                    </main>
-                 <Popup trigger={this.state.buttonPopup} list={this.props.list}>
-                 </Popup>
-                </div>
-            )
-    }
+
     sizeOnChange() {
         let e = document.getElementById("kk");
         let newSize = e.options[e.selectedIndex].value;
