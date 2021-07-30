@@ -1,13 +1,17 @@
-import React, {Component} from "react";
+import React, {Component, useState} from "react";
 import '../ForRows.css';
 import Popupp from './Popup.js';
 import Popup from 'reactjs-popup';
 
 
 class TableRows extends Component {
-    componentDidMount() {
-        this.sizeOnChange();
+constructor(props) {
+    super(props);
+    this.state ={
+        buttonPopup:false,
+        setButtonPopup:false,
     }
+}
 
     render() {
         return (
@@ -32,10 +36,7 @@ class TableRows extends Component {
                             <th className="long-rows">{each.department}</th>
                             <th className="long-rows">{each.duty}</th>
                             <th className="short-rows">{each.age}</th>
-                            <Popup trigger={open => (
-                                <button className="btn btn-sm btn-light" onClick={() => this.popupRender()}>+</button>
-                            )}>
-                            </Popup>
+                            <th>{this.popupRender()}</th>
                         </tr>
                     );
                 })}
@@ -64,15 +65,22 @@ class TableRows extends Component {
             </div>
         );
     }
-
+    popupButton(){
+      this.setState({setButtonPopup : true})
+    }
     popupRender() {
-            return (
+            return(
                 <div>
-                <Popupp list={this.props.list}/>
+                    <main>
+                        <button className={"btn btn-sm btn-light"} onClick={()=> this.popupButton()}>
+                            +
+                        </button>
+                    </main>
+                 <Popup trigger={this.state.buttonPopup} list={this.props.list}>
+                 </Popup>
                 </div>
             )
     }
-
     sizeOnChange() {
         let e = document.getElementById("kk");
         let newSize = e.options[e.selectedIndex].value;
