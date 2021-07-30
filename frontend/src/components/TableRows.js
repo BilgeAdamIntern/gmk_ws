@@ -1,5 +1,8 @@
 import React, {Component} from "react";
 import '../ForRows.css';
+import Popupp from './Popup.js';
+import Popup from 'reactjs-popup';
+
 
 class TableRows extends Component {
     componentDidMount() {
@@ -29,17 +32,23 @@ class TableRows extends Component {
                             <th className="long-rows">{each.department}</th>
                             <th className="long-rows">{each.duty}</th>
                             <th className="short-rows">{each.age}</th>
-                            <button className="btn btn-sm btn-light">+</button>
+                            <Popup trigger={open => (
+                                <button className="btn btn-sm btn-light" onClick={() => this.popupRender()}>+</button>
+                            )}>
+                            </Popup>
                         </tr>
                     );
                 })}
                 </thead>
-                {this.props.first === false && (
-                    <button className="btn btn-sm btn-light" onClick={() => this.props.prevpage()}>previous
-                        page</button>)}
-                <label>    {this.props.pagenumber + 1}   </label>
-                {this.props.last === false && (
-                    <button className="btn btn-sm btn-light" onClick={() => this.props.nextpage()}>next page</button>)}
+                <button className="btn btn-sm btn-light" onClick={() => this.props.prevpage()}
+                        disabled={this.props.first}>
+                    previous page
+                </button>
+                <label>{this.props.pagenumber + 1}</label>
+                <button className="btn btn-sm btn-light" onClick={() => this.props.nextpage()}
+                        disabled={this.props.last}>
+                    next page
+                </button>
                 <select className="float-right" id="kk" onChange={() => this.sizeOnChange()}>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -50,9 +59,18 @@ class TableRows extends Component {
                     <option value="50">50</option>
                     <option value="100">100</option>
                 </select>
-                <label htmlFor="dataNumber" className="float-right">Sayı Seçiniz:</label>
+                <label htmlFor="dataNumber" className="float-right">Görülecek kişi sayısı seçiniz : </label>
+                {/*<Popupp list={this.props.list}/>*/}
             </div>
         );
+    }
+
+    popupRender() {
+            return (
+                <div>
+                <Popupp list={this.props.list}/>
+                </div>
+            )
     }
 
     sizeOnChange() {
