@@ -5,14 +5,14 @@ import Popupp from "./Popup";
 import Popup from "reactjs-popup";
 
 class TableRows extends Component {
-
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            selectedEmpId:0,
+        }
     }
 
     render() {
-
         const customStyles = {
             content: {
                 top: '50%',
@@ -23,7 +23,6 @@ class TableRows extends Component {
                 transform: 'translate(-50%, -50%)',
             },
         };
-
         return (
             <div>
                 <thead>
@@ -35,6 +34,7 @@ class TableRows extends Component {
                     <th className="long-rows">Departman</th>
                     <th className="long-rows">Görev</th>
                     <th className="short-rows">Yaş</th>
+                    <th className="long-rows">id</th>
                 </tr>
                 {!!this.props.list && !!this.props.list.length && this.props.list.map(each => {
                     return (
@@ -47,7 +47,7 @@ class TableRows extends Component {
                             <th className="long-rows">{each.duty}</th>
                             <th className="short-rows">{each.age}</th>
                             <button className="btn btn-sm btn-light"
-                                    onClick={() => this.setState({showModal: true})}>+
+                                    onClick={() => this.setState({showModal: true, selectedEmpId: each.emp_id })} /*id={this.props.indexOf(this.props.)}*/>+
                             </button>
                         </tr>
                     );
@@ -73,14 +73,13 @@ class TableRows extends Component {
                     <option value="100">100</option>
                 </select>
                 <label htmlFor="dataNumber" className="float-right">Görülecek kişi sayısı seçiniz : </label>
-
                 {this.state.showModal &&
                 <Modal
                     isOpen={this.state.showModal}
                     onRequestClose={() => this.setState({showModal: false})}
                     style={customStyles}
                     contentLabel="Example Modal">
-                    <Popupp list={this.props.list}/>
+                    <Popupp list={this.props.list} selectedEmpId={this.state.selectedEmpId}/>
                     <button className="btn btn-sm btn-light" onClick={() => this.setState({showModal: false})}>close
                     </button>
                 </Modal>}

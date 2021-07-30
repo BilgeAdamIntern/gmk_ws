@@ -1,11 +1,17 @@
 import React, {Component} from 'react';
-import Popup from "reactjs-popup";
+
 class Popupp extends Component {
+    constructor(props) {
+        super(props);
+        this.state ={}
+
+    }
     render() {
         return (
             <div>
                 <thead>
-                {!!this.props.list && !!this.props.list.length && this.props.list.map(each => {
+                {this.props.list.map(each => {
+                    if (this.props.selectedEmpId == each.emp_id){
                     return (
                         <tr>
                             <li>Ad : {each.firstName}</li>
@@ -16,11 +22,12 @@ class Popupp extends Component {
                             <li>Görev : {each.duty}</li>
                             <li>Yaş : {each.age}</li>
                         </tr>
-                    );
+                    );}
                 })}
                 </thead>
             </div>
         );
     }
 }
+
 export default Popupp

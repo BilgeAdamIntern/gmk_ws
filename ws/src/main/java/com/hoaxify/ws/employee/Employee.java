@@ -63,8 +63,6 @@ public class Employee implements Serializable {
         this.firstName = firstName;
     }
 
-
-
     public String getPhoneNumber() {
         return phoneNumber;
     }

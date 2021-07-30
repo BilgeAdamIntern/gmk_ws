@@ -14,6 +14,7 @@ public class EmployeeVM {
     private String duty;
     private String tcno;
     private String age;
+    private Long emp_id;
 
     public EmployeeVM (Employee employee) {
         this.setFirstName(employee.getFirstName());
@@ -23,6 +24,7 @@ public class EmployeeVM {
         this.setDuty(employee.getDuty());
         this.setTcno(employee.getTcno());
         this.setAge(employee.getAge());
+        this.setEmp_id(employee.getEmpID());
     }
 
 }
