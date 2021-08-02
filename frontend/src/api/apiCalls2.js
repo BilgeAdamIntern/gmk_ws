@@ -4,6 +4,10 @@ export const getEmployees = (page = 0, size = 1) => {
     return axios.get(`/api/employee?page=${page}&size=${size}`);
 };
 
+export const insertEmployees = (body) => {
+    return axios.post(`/api/employee/`,body);
+}
+
 export const getFirstName = firstName =>{
     return axios.get(`/api/employee/${firstName}`);
 };

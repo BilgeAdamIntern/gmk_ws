@@ -51,9 +51,9 @@ public class Employee implements Serializable {
         return empID;
     }
 
-    public void setEmpID(long empID) {
+    /*public void setEmpID(long empID) {
         this.empID = empID;
-    }
+    }*/
 
     public String getFirstName() {
         return firstName;

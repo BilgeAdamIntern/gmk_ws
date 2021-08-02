@@ -27,7 +27,6 @@ class HomePage extends Component {
             this.setState({size: size});
             this.setState({last: response.data.last})
             this.setState({first: response.data.first})
-            console.log("last = " + this.state.last)
             console.log(response.data);
             this.setState({employees: response.data.content})
             console.log(response.data.content);
@@ -46,7 +45,6 @@ class HomePage extends Component {
         this.fetchEmployees(prevPage, this.state.size);
     };
     updateSize = (newsize) => {
-        this.forceUpdate();
         this.setState({size: newsize});
         this.fetchEmployees(this.state.page, newsize);
         console.log("updated size" + newsize);

@@ -14,6 +14,6 @@ public class EmployeeUpdateVM {
     private String phoneNumber;
     private String department;
     private String duty;
-    private String id;
+    private String tcno;
     private String age;
 }
