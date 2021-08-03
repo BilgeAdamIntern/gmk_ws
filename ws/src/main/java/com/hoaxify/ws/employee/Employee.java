@@ -6,6 +6,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
 
+
 @Data
 @Entity
 @Table(name = "employee_details", schema = "gmk_user")

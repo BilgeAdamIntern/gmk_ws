@@ -1,11 +1,9 @@
 package com.hoaxify.ws.employee;
 
 import com.hoaxify.ws.error.NotFoundException;
-import com.hoaxify.ws.employee.CustomEmployeeDetails;
 import com.hoaxify.ws.employee.vm.EmployeeUpdateVM;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
@@ -16,8 +14,8 @@ public class CustomEmployeeDetailsService implements EmployeeDetailsService {
     EmployeeRepository employeeRepository;
     public CustomEmployeeDetailsService(EmployeeRepository employeeRepository) {this.employeeRepository = employeeRepository;}
 
-    public void save(Employee employee) {
-        employeeRepository.save(employee);
+    public Employee save(Employee employee) {
+        return employeeRepository.save(employee);
     }
 
     public Page<Employee> getEmployee(Pageable page, Employee employee) {
