@@ -5,7 +5,7 @@ export const getEmployees = (page = 0, size = 1) => {
 };
 
 export const insertEmployees = (body) => {
-    return axios.post(`/api/employee/`,body);
+    return axios.post(`/api/saveEmployee/`,body);
 }
 
 export const getFirstName = firstName =>{

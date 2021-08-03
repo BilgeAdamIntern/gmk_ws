@@ -91,7 +91,7 @@ class TableRows extends Component {
                     <Insert/>}
                     {this.state.detailPopupCheck === true &&
                     <Popupp list={this.props.list} selectedEmpId={this.state.selectedEmpId}/>}
-                    <button className="btn btn-sm btn-light" onClick={() => this.setState({
+                    <button className="btn btn-sm btn-light float-left" onClick={() => this.setState({
                         showModal: false,
                         insertPopupCheck: false,
                         detailPopupCheck: false

@@ -1,6 +1,7 @@
 package com.hoaxify.ws.user;
 
 import com.hoaxify.ws.auth.Role;
+import com.hoaxify.ws.employee.Employee;
 
 import javax.persistence.*;
 
@@ -28,6 +29,11 @@ public class User {
 
 	@Column(name = "active", nullable = false)
 	private boolean active;
+
+	@OneToOne
+	@JoinColumn(name = "emp_id")
+	private Employee employeeId;
+
 
 	public boolean isActive() {
 		return active;

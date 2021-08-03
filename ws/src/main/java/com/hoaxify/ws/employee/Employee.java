@@ -1,10 +1,12 @@
 package com.hoaxify.ws.employee;
 
 import com.hoaxify.ws.user.User;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
+@Data
 @Entity
 @Table(name = "employee_details", schema = "gmk_user")
 public class Employee implements Serializable {
@@ -13,19 +15,6 @@ public class Employee implements Serializable {
     @Column(name = "emp_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long empID;
-
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private User userID;
-
-    public User getUserID() {
-        return userID;
-    }
-
-    public void setUserID(User userID) {
-        this.userID = userID;
-    }
-
     @Column(name = "first_name", nullable = false)
     private String firstName;
 

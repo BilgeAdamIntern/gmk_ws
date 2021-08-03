@@ -1,6 +1,6 @@
 package com.hoaxify.ws.employee;
-import javax.validation.Valid;
 
+import javax.validation.Valid;
 import com.hoaxify.ws.user.CustomUserDetailsService;
 import com.hoaxify.ws.user.User;
 import com.hoaxify.ws.user.vm.UserUpdateVM;
@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.hoaxify.ws.shared.CurrentUser;
 import com.hoaxify.ws.shared.GenericResponse;
 import com.hoaxify.ws.employee.vm.EmployeeUpdateVM;
@@ -31,13 +30,13 @@ public class EmployeeController {
     CustomEmployeeDetailsService employeeService;
 
     @PostMapping("/employees")
-    public GenericResponse createUser(@Valid @RequestBody Employee employee) {
+    public GenericResponse createEmployee(@Valid @RequestBody Employee employee) {
         employeeService.save(employee);
         return new GenericResponse("employee created");
     }
 
     @GetMapping("/employee")
-    Page<EmployeeVM> getEmployees(Pageable page, @CurrentUser Employee employee){
+    Page<EmployeeVM> getEmployees(Pageable page, @CurrentUser Employee employee) {
         return employeeService.getEmployee(page, employee).map(EmployeeVM::new);
     }
 
