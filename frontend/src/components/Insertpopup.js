@@ -5,11 +5,13 @@ class Insert extends Component {
         super(props);
         this.state = {}
     }
+    componentDidMount() {
+        render();
+    }
 
     saveEmployee() {
 
     }
-
     render() {
         return (
             <div>
