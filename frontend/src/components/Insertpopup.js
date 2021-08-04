@@ -20,7 +20,7 @@ class Insert extends Component {
                     id: null,
                     password: "",
                     username: "",
-                    user_role: "",
+                    user_role: null,
                     active: true,
                 },
             }
@@ -28,9 +28,9 @@ class Insert extends Component {
     }
 
     onInputChange = (e, dataContainer) => {
-        // let name = e.target.id;
-        // let value = e.target.value;
-        let {name, value} = e.target;
+        let name = e.target.id;
+        let value = e.target.value;
+       /* let {name, value} = e.target;*/
         let data = this.state.data;
         data[dataContainer][name] = value;
         this.setState({data: data});

@@ -12,7 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.* ;
 
 import javax.validation.Valid;
 
@@ -27,7 +27,7 @@ public class EmployeeController {
     UserRepository userRepository;
 
     @PostMapping("/saveEmployee")
-    public ResponseEntity<?> createEmployee(@Valid @RequestBody SaveEmployeeDTO dto) {
+    public ResponseEntity<?> createEmployee(@RequestBody SaveEmployeeDTO dto) {
         try {
             Employee savedEmp = employeeService.save(dto.getEmployee());
             User user = dto.getUser();

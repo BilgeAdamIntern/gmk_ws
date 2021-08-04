@@ -11,6 +11,8 @@ import javax.persistence.*;
 @Table(name = "users", schema = "gmk_user")
 public class User {
 
+    private static final long serialVersionUID = -3283182593565594093L;
+
     @Id
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +28,7 @@ public class User {
     private byte[] image;
 
     @ManyToOne
-    @JoinColumn(name = "user_role", nullable = false)
+    @JoinColumn(name = "user_role", nullable = true)
     private Role user_role;
 
     @Column(name = "active", nullable = false)

@@ -12,26 +12,29 @@ import java.io.Serializable;
 @Table(name = "employee_details", schema = "gmk_user")
 public class Employee implements Serializable {
 
+    private static final long serialVersionUID = -3283182593565594093L;
+
     @Id
     @Column(name = "emp_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long empID;
+
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
     @Column(name = "second_name", nullable = false)
     private String secondName;
 
-    @Column(name="phone_number", nullable = false, unique = true)
+    @Column(name="phone_number", nullable = true)
     private String phoneNumber;
 
-    @Column(name="department", nullable = false)
+    @Column(name="department", nullable = true)
     private String department;
 
-    @Column(name="duty", nullable = false)
+    @Column(name="duty", nullable = true)
     private String duty;
 
-    @Column(name="age", nullable = false)
+    @Column(name="age", nullable = true)
     private String age;
 
     @Column(name="tcno", nullable = false, unique = true)
@@ -40,10 +43,6 @@ public class Employee implements Serializable {
     public long getEmpID() {
         return empID;
     }
-
-    /*public void setEmpID(long empID) {
-        this.empID = empID;
-    }*/
 
     public String getFirstName() {
         return firstName;
