@@ -88,7 +88,10 @@ class TableRows extends Component {
                     style={customStyles}
                     contentLabel="Example Modal">
                     {this.state.insertPopupCheck === true &&
-                    <Insert/>}
+                    <Insert close={() => {
+                        this.setState({showModal: false});
+                        this.props.refresh()
+                    }}/>}
                     {this.state.detailPopupCheck === true &&
                     <Popupp list={this.props.list} selectedEmpId={this.state.selectedEmpId}/>}
                     <button className="btn btn-sm btn-light float-left" onClick={() => this.setState({

@@ -32,6 +32,7 @@ public class EmployeeController {
             Employee savedEmp = employeeService.save(dto.getEmployee());
             User user = dto.getUser();
             user.setEmployeeId(savedEmp);
+            userRepository.save(user);
             return ResponseEntity.ok().body("Kaydedildi.");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Kaydedilemedi! Lütfen verileri kontrol ediniz.");

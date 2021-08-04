@@ -49,6 +49,9 @@ class HomePage extends Component {
         this.fetchEmployees(this.state.page, newsize);
         console.log("updated size" + newsize);
     };
+    refresh = () => {
+        this.fetchEmployees(this.state.page, this.state.size);
+    };
 
     render() {
         return (
@@ -64,6 +67,7 @@ class HomePage extends Component {
                             prevpage={() => this.onClickPrev()}
                             last={this.state.last}
                             first={this.state.first}
+                            refresh={() => this.refresh()}
                         />
                     </div>
                 </div>

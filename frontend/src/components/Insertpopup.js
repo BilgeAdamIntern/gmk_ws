@@ -36,6 +36,10 @@ class Insert extends Component {
         this.setState({data: data});
     };
 
+    onSave = () => {
+        insertEmployees(this.state.data, this.props.close);
+    };
+
     render() {
         return (
             <div>
@@ -78,7 +82,7 @@ class Insert extends Component {
                     }}/></label><br/>
                 </th>
                 <button className="btn btn-sm btn-light float-lg-right"
-                        onClick={() => insertEmployees(this.state.data)}>Kaydet
+                        onClick={() => this.onSave()}>Kaydet
                 </button>
             </div>
 

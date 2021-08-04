@@ -29,6 +29,7 @@ class UserList extends Component {
                             prevpage={() => this.props.prevpage()}
                             last={this.props.last}
                             first={this.props.first}
+                            refresh={() => this.props.refresh()}
                         />
                     </table>
                 </div>

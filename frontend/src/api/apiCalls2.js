@@ -1,14 +1,16 @@
 import axios from "axios";
 
-export const getEmployees = (page = 0, size = 1) => {
+export const getEmployees = (page = 0, size = 5) => {
     return axios.get(`/api/employee?page=${page}&size=${size}`);
 };
 
-export const insertEmployees = (body) => {
+export const insertEmployees = (body, closeModal) => {
     console.log(body)
     return axios.post(`/api/saveEmployee/`, body)
         .then(response => {
-            alert("İşlem Başarılı " + response.status)
+            alert("İşlem Başarılı " + response.status);
+            console.log("kapama baslat")
+            closeModal();
         })
 };
 
