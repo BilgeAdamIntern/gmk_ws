@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import UserList from '../components/UserList';
 import {getEmployees} from "../api/apiCalls2";
+import {getUsers} from "../api/apiCalls";
 
 //React JS
 class HomePage extends Component {
@@ -9,6 +10,7 @@ class HomePage extends Component {
         super(props);
         this.state = {
             employees: [],
+            users:[],
             content: [],
             size: 0,
             page: 0,
@@ -24,11 +26,13 @@ class HomePage extends Component {
     fetchEmployees = async (page, size) => {
         try {
             const response = await getEmployees(page, size);
+            const response2= await getUsers(page,size)
             this.setState({size: size});
             this.setState({last: response.data.last})
             this.setState({first: response.data.first})
             console.log(response.data);
             this.setState({employees: response.data.content})
+            this.setState({users: response2.data.content})
             console.log(response.data.content);
         } catch (error) {
             console.log("HAYIIR");
@@ -60,6 +64,7 @@ class HomePage extends Component {
                     <div className="col">
                         <UserList
                             list={this.state.employees}
+                            list2={this.state.users}
                             pagenumber={this.state.page}
                             sizenumber={this.state.size}
                             updatesize={(e) => this.updateSize(e)}

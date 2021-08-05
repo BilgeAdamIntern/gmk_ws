@@ -93,7 +93,7 @@ class TableRows extends Component {
                         this.props.refresh()
                     }}/>}
                     {this.state.detailPopupCheck === true &&
-                    <Popupp list={this.props.list} selectedEmpId={this.state.selectedEmpId}/>}
+                    <Popupp list={this.props.list} list2={this.props.list2} selectedEmpId={this.state.selectedEmpId} />}
                     <button className="btn btn-sm btn-light float-left" onClick={() => this.setState({
                         showModal: false,
                         insertPopupCheck: false,

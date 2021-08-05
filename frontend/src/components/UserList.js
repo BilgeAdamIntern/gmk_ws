@@ -22,6 +22,7 @@ class UserList extends Component {
                     <table border={1} className="list-group">
                         <TableRows
                             list={this.props.list}
+                            list2={this.props.list2}
                             pagenumber={this.props.pagenumber}
                             sizenumber={this.props.sizenumber}
                             updatesize={(e) => this.props.updatesize(e)}

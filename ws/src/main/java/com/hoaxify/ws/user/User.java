@@ -27,6 +27,8 @@ public class User {
     @Column(name = "image")
     private byte[] image;
 
+
+
     @ManyToOne
     @JoinColumn(name = "user_role", nullable = true)
     private Role user_role;
@@ -37,7 +39,6 @@ public class User {
     @OneToOne
     @JoinColumn(name = "emp_id")
     private Employee employeeId;
-
 
     public boolean isActive() {
         return active;
