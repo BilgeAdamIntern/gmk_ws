@@ -35,7 +35,7 @@ public class UserController {
 	
 	@GetMapping("/users")
 	Page<UserVM> getUsers(Pageable page, @CurrentUser User user){
-		return userService.getUsers(page, user).map(UserVM::new);
+		return userService.getUsers(page).map(UserVM::new);
 	}
 	
 	@GetMapping("/users/{username}")
@@ -44,12 +44,12 @@ public class UserController {
 		return new UserVM(user);
 	}
 	
-	@PutMapping("/users/{username}")
+	/*@PutMapping("/users/{username}")
 	@PreAuthorize("#username == principal.username")
 	UserVM updateUser(@Valid @RequestBody UserUpdateVM updatedUser, @PathVariable String username) {
 		User user = userService.updateUser(username, updatedUser);
 		return new UserVM(user);
-	}
+	}*/
 	
 	@DeleteMapping("/users/{username}")
 	@PreAuthorize("#username == principal.username")

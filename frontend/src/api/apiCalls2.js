@@ -7,9 +7,7 @@ export const getEmployees = (page = 0, size = 5) => {
 export const insertEmployees = (body, closeModal) => {
     console.log(body)
     return axios.post(`/api/saveEmployee/`, body)
-        .then(response => {
-            alert("İşlem Başarılı " + response.status);
-            console.log("kapama baslat")
+        .then(() => {
             closeModal();
         })
 };

@@ -1,5 +1,6 @@
 package com.hoaxify.ws.employee.dto;
 
+import com.hoaxify.ws.auth.Role;
 import com.hoaxify.ws.employee.Employee;
 import com.hoaxify.ws.user.User;
 import lombok.Data;

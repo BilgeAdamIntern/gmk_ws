@@ -14,7 +14,7 @@ public class User {
     private static final long serialVersionUID = -3283182593565594093L;
 
     @Id
-    @Column(name = "user_id")
+    @Column(name = "user_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
@@ -24,20 +24,15 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "image")
-    private byte[] image;
-
-
-
     @ManyToOne
     @JoinColumn(name = "user_role", nullable = true)
     private Role user_role;
 
-    @Column(name = "active", nullable = false)
+    @Column(name = "active", nullable = true)
     private boolean active;
 
     @OneToOne
-    @JoinColumn(name = "emp_id")
+    @JoinColumn(name = "emp_id", nullable = false)
     private Employee employeeId;
 
     public boolean isActive() {
@@ -80,11 +75,4 @@ public class User {
         this.user_role = user_role;
     }
 
-    public byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
 }

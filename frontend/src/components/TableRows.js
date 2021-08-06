@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import '../ForRows.css';
 import Modal from 'react-modal';
-import Popupp from "./Popup";
 import Insert from "./Insertpopup";
 
 class TableRows extends Component {
@@ -13,6 +12,24 @@ class TableRows extends Component {
             detailPopupCheck: false,
         }
     }
+
+    onSelect = (each) => {
+        let selectedUser = null;
+        if (this.props.list2) {
+            this.props.list2.map(eachUser => {
+                if (eachUser.employeeId.empID === each.emp_id) {
+                    selectedUser = eachUser;
+                }
+            });
+        }
+        this.setState({
+            showModal: true,
+            selectedEmpId: each.emp_id,
+            selectedEmp: each,
+            selectedUser: selectedUser,
+            // detailPopupCheck: true
+        }, () => this.setState({insertPopupCheck: true}))
+    };
 
     render() {
         const customStyles = {
@@ -37,7 +54,12 @@ class TableRows extends Component {
                     <th className="long-rows">Görev</th>
                     <th className="short-rows">Yaş</th>
                     <button className="btn btn-sm btn-light"
-                            onClick={() => this.setState({showModal: true, insertPopupCheck: true})}>+
+                            onClick={() => this.setState({
+                                showModal: true,
+                                insertPopupCheck: true,
+                                selectedEmp: {},
+                                selectedUser: {}
+                            })}>+
                     </button>
                 </tr>
                 {!!this.props.list && !!this.props.list.length && this.props.list.map(each => {
@@ -51,11 +73,7 @@ class TableRows extends Component {
                             <th className="long-rows">{each.duty}</th>
                             <th className="short-rows">{each.age}</th>
                             <button className="btn btn-sm btn-light"
-                                    onClick={() => this.setState({
-                                        showModal: true,
-                                        selectedEmpId: each.emp_id,
-                                        detailPopupCheck: true
-                                    })}>+
+                                    onClick={() => this.onSelect(each)}>+
                             </button>
                         </tr>
                     );
@@ -70,7 +88,8 @@ class TableRows extends Component {
                         disabled={this.props.last}>
                     next page
                 </button>
-                <select className="float-right" id="kk" onChange={() => this.sizeOnChange()}>
+                <select className="float-right" id="kk" onChange={() => this.sizeOnChange()} defaultValue={5
+                }>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -88,16 +107,15 @@ class TableRows extends Component {
                     style={customStyles}
                     contentLabel="Example Modal">
                     {this.state.insertPopupCheck === true &&
-                    <Insert close={() => {
-                        this.setState({showModal: false});
-                        this.props.refresh()
-                    }}/>}
-                    {this.state.detailPopupCheck === true &&
-                    <Popupp list={this.props.list} list2={this.props.list2} selectedEmpId={this.state.selectedEmpId} />}
+                    <Insert employee={this.state.selectedEmp} user={this.state.selectedUser}
+                            close={() => {
+                                this.setState({showModal: false});
+                                this.props.refresh()
+                            }}/>}
                     <button className="btn btn-sm btn-light float-left" onClick={() => this.setState({
                         showModal: false,
-                        insertPopupCheck: false,
-                        detailPopupCheck: false
+                        insertPopupCheck: false
+
                     })}>close
                     </button>
                 </Modal>}

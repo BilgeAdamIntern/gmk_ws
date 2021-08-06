@@ -10,8 +10,9 @@ public class UserUpdateVM {
 	
 	@NotNull
 	@Size(min = 4, max=255)
-	private String displayName;
-	
+	private String username;
+	private String password;
+	private boolean active;
 	private String image;
 
 }

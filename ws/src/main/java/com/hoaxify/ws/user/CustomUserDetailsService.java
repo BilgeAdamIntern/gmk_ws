@@ -24,11 +24,8 @@ public class CustomUserDetailsService implements UserDetailsService {
         userRepository.save(user);
     }
 
-    public Page<User> getUsers(Pageable page, User user) {
-        if(user != null) {
-            return userRepository.findByUsernameNot(user.getUsername(), page);
-        }
-        return userRepository.findAll(page);
+    public Page<User> getUsers(Pageable page) {
+            return userRepository.findAll(page);
     }
 
     @Override
@@ -47,12 +44,12 @@ public class CustomUserDetailsService implements UserDetailsService {
         return inDB;
     }
 
-    public User updateUser(String username, UserUpdateVM updatedUser) {
+  /*  public User updateUser(String username, UserUpdateVM updatedUser) {
         User inDB = getByUsername(username);
         inDB.setUsername(updatedUser.getDisplayName());
         return userRepository.save(inDB);
     }
-
+*/
     public void deleteUser(String username) {
         User inDB = userRepository.findByUsername(username);
         userRepository.delete(inDB);

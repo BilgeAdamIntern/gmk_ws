@@ -1,7 +1,7 @@
 package com.hoaxify.ws.employee;
 
+import com.hoaxify.ws.auth.Role;
 import com.hoaxify.ws.employee.dto.SaveEmployeeDTO;
-import com.hoaxify.ws.employee.vm.EmployeeUpdateVM;
 import com.hoaxify.ws.employee.vm.EmployeeVM;
 import com.hoaxify.ws.shared.CurrentUser;
 import com.hoaxify.ws.shared.GenericResponse;
@@ -12,9 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.* ;
-
-import javax.validation.Valid;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
@@ -47,13 +45,6 @@ public class EmployeeController {
     @GetMapping("/employees/{firstName}")
     EmployeeVM getEmployee(@PathVariable String firstName) {
         Employee employee = employeeService.getByfirstName(firstName);
-        return new EmployeeVM(employee);
-    }
-
-    @PutMapping("/employees/{firstName}")
-    @PreAuthorize("#firstName == principal.firstName")
-    EmployeeVM updateEmployees(@Valid @RequestBody EmployeeUpdateVM updateEmployees, @PathVariable String firstName) {
-        Employee employee = employeeService.updateEmployee(firstName, updateEmployees);
         return new EmployeeVM(employee);
     }
 

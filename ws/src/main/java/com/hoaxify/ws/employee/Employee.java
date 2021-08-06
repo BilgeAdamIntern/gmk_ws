@@ -15,14 +15,14 @@ public class Employee implements Serializable {
     private static final long serialVersionUID = -3283182593565594093L;
 
     @Id
-    @Column(name = "emp_id")
+    @Column(name = "emp_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long empID;
 
-    @Column(name = "first_name", nullable = false)
+    @Column(name = "first_name", nullable = true)
     private String firstName;
 
-    @Column(name = "second_name", nullable = false)
+    @Column(name = "second_name", nullable = true)
     private String secondName;
 
     @Column(name="phone_number", nullable = true)
@@ -37,7 +37,7 @@ public class Employee implements Serializable {
     @Column(name="age", nullable = true)
     private String age;
 
-    @Column(name="tcno", nullable = false, unique = true)
+    @Column(name="tcno", nullable = true, unique = true)
     private String tcno;
 
     public long getEmpID() {
